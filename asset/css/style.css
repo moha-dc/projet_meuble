@@ -567,8 +567,8 @@
         scroll-behavior: auto;
       }
     }
-
-    @media (prefers-contrast:) {
+/*
+    @media () {
       :root {
         --muted: #1a1a1a;
       }
