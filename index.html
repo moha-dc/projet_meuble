@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meubles & Co — Mobilier durable et écoresponsable</title>
+  <meta name="description" content="Vendeur de meubles durables. Présentation, boutique, à propos, contact, FAQ.">
+  <style>
+    /* ===== Reset minimal et variables ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      line-height: 1.6;
+      color: #141414;
+      background: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Soulignement au focus et hover pour meilleure visibilité */
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --ink: #1a1a1a;
+      --muted: #4b5563;
+      --brand: #3C2F2F;
+      --accent: #547D57;
+      --paper: #F5F3EE;
+      --ring: #0f766e;
+      --container: 1120px;
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    }
+
+    /* ===== Accessibilité ===== */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .skip-link:focus {
+      left: 1rem;
+      top: 1rem;
+      width: auto;
+      height: auto;
+      background: #fff;
+      color: #000;
+      padding: .5rem .75rem;
+      border: 2px solid #000;
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    /* Indication visuelle claire du focus */
+    :focus-visible {
+      outline: 3px solid var(--ring);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Classe pour masquer visuellement mais garder pour lecteurs d'écran */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding: 0 1rem;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--paper);
+      border-bottom: 1px solid #e5e7eb;
+      z-index: 100;
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: .75rem 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: .4px;
+      color: var(--brand);
+      font-size: 1.1rem;
+    }
+
+    /* ===== Menu burger ===== */
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 101;
+      border-radius: 4px;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus {
+      border-color: var(--brand);
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: var(--brand);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    #menu-checkbox {
+      display: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg);
+      box-shadow: -4px 0 20px rgba(0, 0, 0, .1);
+      transition: right 0.3s ease;
+      overflow-y: auto;
+      padding: 5rem 0 2rem;
+      z-index: 100;
+    }
+
+    #menu-checkbox:checked ~ nav {
+      right: 0;
+    }
+
+    /* Animation burger */
+    #menu-checkbox:checked ~ .menu-toggle span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    #menu-checkbox:checked ~ .menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    #menu-checkbox:checked ~ .menu-toggle span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 1rem;
+    }
+
+    nav li {
+      width: 100%;
+    }
+
+    nav a {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+      font-weight: 500;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Indication de la page actuelle */
+    nav a[aria-current="page"] {
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--paper), #fff);
+      border-bottom: 1px solid #eee;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 3rem 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 2.5vw + 1rem, 3rem);
+      line-height: 1.2;
+      margin: .5rem 0 1rem;
+      color: var(--brand);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1.1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 999px;
+      padding: .35rem .75rem;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    .hero-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .hero-card figure {
+      aspect-ratio: 4/3;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    section h2 {
+      font-size: clamp(1.4rem, 1.5vw + 1rem, 2rem);
+      margin: 0 0 1rem;
+      color: var(--brand);
+    }
+
+    section p.lead {
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 1.05rem;
+    }
+
+    /* ===== Boutique ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card figure {
+      aspect-ratio: 4/3;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .card .body {
+      padding: .9rem;
+    }
+
+    .card h3 {
+      margin: 0 0 .5rem;
+      font-size: 1.1rem;
+    }
+
+    .price {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-top: .5rem;
+    }
+
+    .badge {
+      font-size: .75rem;
+      color: #fff;
+      background: var(--brand);
+      padding: .2rem .5rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* ===== À propos ===== */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .about aside {
+      background: var(--paper);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .about h3 {
+      margin-top: 0;
+      color: var(--brand);
+      font-size: 1.25rem;
+    }
+
+    .about ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+    }
+
+    .about li {
+      margin-bottom: .5rem;
+    }
+
+    /* ===== Contact ===== */
+    form {
+      display: grid;
+      gap: 1rem;
+      max-width: 640px;
+      margin-top: 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: .3rem;
+      color: var(--ink);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: .7rem .8rem;
+      border: 2px solid #d1d5db;
+      border-radius: 12px;
+      font: inherit;
+      background: #fff;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--ring);
+      outline-offset: 2px;
+    }
+
+    /* Indication des champs requis */
+    input:required,
+    textarea:required {
+      border-left: 4px solid var(--accent);
+    }
+
+    button[type="submit"] {
+      background: var(--accent);
+      color: #fff;
+      padding: .8rem 1.5rem;
+      border-radius: 12px;
+      border: 2px solid var(--accent);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    button[type="submit"]:hover {
+      background: #456e48;
+      border-color: #456e48;
+    }
+
+    button[type="submit"]:active {
+      transform: scale(0.98);
+    }
+
+    /* ===== FAQ ===== */
+    details {
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      padding: .75rem 1rem;
+      background: #fff;
+      margin-top: .75rem;
+      transition: border-color 0.2s ease;
+    }
+
+    details:hover,
+    details:focus-within {
+      border-color: var(--accent);
+    }
+
+    details[open] {
+      border-color: var(--accent);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      padding: .25rem;
+      color: var(--brand);
+      font-size: 1.05rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::before {
+      content: '▶';
+      display: inline-block;
+      margin-right: .5rem;
+      transition: transform 0.2s ease;
+      color: var(--accent);
+    }
+
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    details p {
+      padding: .5rem 1.5rem .25rem;
+      color: var(--muted);
+    }
+
+    details ul {
+      list-style: disc;
+      padding-left: 3rem;
+      margin: .5rem 0;
+    }
+
+    details li {
+      margin-bottom: .4rem;
+      color: var(--muted);
+    }
+
+    details strong {
+      color: var(--brand);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      background: var(--paper);
+      padding: 1.25rem 0;
+      color: #374151;
+    }
+
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: center;
+      margin-top: .5rem;
+      font-size: .9rem;
+    }
+
+    .legal-links a {
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .legal-links a:hover,
+    .legal-links a:focus {
+      color: var(--brand);
+      text-decoration: underline;
+    }
+
+    .foot > p:last-child a {
+      display: inline-flex;
+      align-items: center;
+      padding: .5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .foot > p:last-child a:hover,
+    .foot > p:last-child a:focus {
+      background: #456e48;
+      text-decoration: none;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== Préférences utilisateur ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* Mode contraste élevé */
+    @media (prefers-contrast: high) {
+      :root {
+        --muted: #1a1a1a;
+      }
+
+      input,
+      textarea,
+      details {
+        border-width: 3px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller directement au contenu principal</a>
+
+  <header role="banner">
+    <div class="container bar">
+      <a href="#presentation" class="brand">Meubles & Co</a>
+
+      <input type="checkbox" id="menu-checkbox" aria-label="Ouvrir ou fermer le menu de navigation">
+      <label for="menu-checkbox" class="menu-toggle" aria-label="Bouton menu" aria-controls="navigation-principale">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span class="sr-only">Menu</span>
+      </label>
+
+      <nav id="navigation-principale" aria-label="Navigation principale">
+        <ul role="list">
+          <li><a href="#presentation">Présentation</a></li>
+          <li><a href="#boutique">Boutique</a></li>
+          <li><a href="#a-propos">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#faq">Questions fréquentes</a></li>
+          <li><a href="#mentions-legales">Mentions légales</a></li>
+          <li><a href="#politique-confidentialite">Confidentialité</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" role="main">
+    <section id="presentation" class="hero" aria-labelledby="titre-hero">
+      <div class="container hero-inner">
+        <div>
+          <p><span class="tag" role="text">Nouveautés</span></p>
+          <h1 id="titre-hero">Mobilier durable pour intérieurs exigeants</h1>
+          <p class="lead">Bois certifié, finitions non toxiques, conception pensée pour durer. Notre
+            ligne allie fonctionnalité, esthétique et impact environnemental réduit.</p>
+        </div>
+        <div class="hero-card">
+          <figure>
+            <img src="asset/img/salon.jpeg" alt="Salon moderne meublé avec des meubles en bois clair, canapé beige et table basse design" loading="eager" width="800" height="600">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="boutique" aria-labelledby="titre-boutique">
+      <div class="container">
+        <h2 id="titre-boutique">Boutique</h2>
+        <p class="lead">Sélection essentielle de notre collection. Prix indicatifs.</p>
+
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <figure>
+              <img src="asset/img/chene.jpeg" alt="Buffet en chêne massif de couleur naturelle avec portes et tiroirs" loading="lazy" width="800" height="600">
+            </figure>
+            <div class="body">
+              <h3>Buffet Chêne Luma <span class="badge" aria-label="Matériau">Chêne massif</span></h3>
+              <p>Rangements généreux. Finition huilée.</p>
+              <p class="price" aria-label="Prix">999 €</p>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <figure>
+              <img src="asset/img/table.jpeg" alt="Table extensible en bois clair de style scandinave avec pieds fuselés" loading="lazy" width="800" height="600">
+            </figure>
+            <div class="body">
+              <h3>Table Extensible Arko</h3>
+              <p>De 160 à 240 centimètres. Mécanisme discret.</p>
+              <p class="price" aria-label="Prix">1 290 €</p>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <figure>
+              <img src="asset/img/canape.jpeg" alt="Canapé trois places en tissu beige avec coussins d'assise confortables" loading="lazy" width="800" height="600">
+            </figure>
+            <div class="body">
+              <h3>Canapé Rhea 3 places</h3>
+              <p>Déhoussable. Tissu recyclé.</p>
+              <p class="price" aria-label="Prix">1 150 €</p>
+            </div>
+          </article>
+
+          <article class="card" role="listitem">
+            <figure>
+              <img src="asset/img/chaise.jpeg" alt="Chaise en bois de noyer avec assise rembourrée en tissu gris" loading="lazy" width="800" height="600">
+            </figure>
+            <div class="body">
+              <h3>Chaise Noyer Vida</h3>
+              <p>Assise en tissu. Structure en noyer.</p>
+              <p class="price" aria-label="Prix">189 €</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="a-propos" aria-labelledby="titre-apropos">
+      <div class="container">
+        <h2 id="titre-apropos">À propos</h2>
+        <div class="about">
+          <div>
+            <p class="lead">Depuis 1998, nous concevons un mobilier sobre et réparable.</p>
+            <ul>
+              <li>Bois issu de forêts gérées durablement</li>
+              <li>Pièces détachées disponibles pendant 10 ans</li>
+              <li>Finitions à faible émission de composés organiques volatils</li>
+            </ul>
+          </div>
+          <aside aria-labelledby="titre-engagements">
+            <h3 id="titre-engagements">Engagements</h3>
+            <p>Empreinte carbone mesurée et réduite. Fabrication européenne exclusivement.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="titre-contact">
+      <div class="container">
+        <h2 id="titre-contact">Contact</h2>
+        <form method="post" action="/contact" aria-label="Formulaire de contact">
+          <div>
+            <label for="nom">Nom <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <input id="nom" name="nom" type="text" required aria-required="true" autocomplete="name">
+          </div>
+          <div>
+            <label for="email">Adresse électronique <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <input id="email" name="email" type="email" required aria-required="true" autocomplete="email">
+          </div>
+          <div>
+            <label for="message">Message <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+          </div>
+          <button type="submit">Envoyer le message</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="titre-faq">
+      <div class="container">
+        <h2 id="titre-faq">Questions fréquentes</h2>
+        
+        <details>
+          <summary>Quels matériaux utilisez-vous pour vos meubles ?</summary>
+          <p>Nous utilisons du bois massif certifié provenant de forêts gérées durablement, du placage véritable, de l'acier thermolaqué et des tissus recyclés pour nos rembourrages.</p>
+        </details>
+        
+        <details>
+          <summary>Livrez-vous et installez-vous les meubles ?</summary>
+          <p>Nous livrons dans toute la France métropolitaine. Une option d'installation par nos équipes est disponible sur demande lors de votre commande.</p>
+        </details>
+
+        <details>
+          <summary>Quelle est la durée de garantie sur vos produits ?</summary>
+          <p>Tous nos meubles sont garantis 2 ans. Les pièces détachées restent disponibles pendant 10 ans après l'achat pour assurer la réparabilité de nos produits.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="mentions-legales" aria-labelledby="titre-mentions">
+      <div class="container">
+        <h2 id="titre-mentions">Mentions légales</h2>
+        
+        <details>
+          <summary>Informations sur l'entreprise</summary>
+          <p><strong>Raison sociale :</strong> Meubles & Co SAS<br>
+          <strong>Capital social :</strong> 50 000 €<br>
+          <strong>Siège social :</strong> 45 Rue du Mobilier, 75011 Paris, France<br>
+          <strong>SIRET :</strong> 123 456 789 00012<br>
+          <strong>RCS :</strong> Paris B 123 456 789<br>
+          <strong>TVA intracommunautaire :</strong> FR 12 123456789</p>
+        </details>
+        
+        <details>
+          <summary>Directeur de publication</summary>
+          <p><strong>Nom :</strong> Marie Dubois<br>
+          <strong>Fonction :</strong> Présidente<br>
+          <strong>Contact :</strong> contact@meublesetco.fr</p>
+        </details>
+
+        <details>
+          <summary>Hébergeur du site</summary>
+          <p><strong>Nom :</strong> OVH SAS<br>
+          <strong>Siège social :</strong> 2 rue Kellermann, 59100 Roubaix, France<br>
+          <strong>Téléphone :</strong> 1007</p>
+        </details>
+
+        <details>
+          <summary>Propriété intellectuelle</summary>
+          <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle. Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="politique-confidentialite" aria-labelledby="titre-confidentialite">
+      <div class="container">
+        <h2 id="titre-confidentialite">Politique de confidentialité</h2>
+        
+        <details>
+          <summary>Collecte des données personnelles</summary>
+          <p>Nous collectons uniquement les données personnelles que vous nous fournissez volontairement via le formulaire de contact : nom et adresse électronique. Ces informations sont nécessaires pour traiter votre demande et vous recontacter.</p>
+        </details>
+        
+        <details>
+          <summary>Utilisation des données</summary>
+          <p>Vos données personnelles sont utilisées exclusivement pour :</p>
+          <ul>
+            <li>Répondre à vos demandes de renseignements</li>
+            <li>Traiter vos commandes et assurer le suivi</li>
+            <li>Vous envoyer des informations sur nos produits (uniquement avec votre consentement)</li>
+          </ul>
+          <p>Nous ne vendons ni ne partageons vos données avec des tiers à des fins commerciales.</p>
+        </details>
+
+        <details>
+          <summary>Conservation des données</summary>
+          <p>Vos données personnelles sont conservées pendant une durée de 3 ans maximum à compter de notre dernier contact, sauf obligation légale de conservation plus longue. Les données liées aux commandes sont conservées conformément aux obligations légales comptables et fiscales.</p>
+        </details>
+
+        <details>
+          <summary>Vos droits</summary>
+          <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :</p>
+          <ul>
+            <li>Droit d'accès à vos données personnelles</li>
+            <li>Droit de rectification de vos données</li>
+            <li>Droit à l'effacement de vos données</li>
+            <li>Droit à la limitation du traitement</li>
+            <li>Droit à la portabilité de vos données</li>
+            <li>Droit d'opposition au traitement</li>
+          </ul>
+          <p>Pour exercer ces droits, contactez-nous à : rgpd@meublesetco.fr</p>
+        </details>
+
+        <details>
+          <summary>Cookies</summary>
+          <p>Ce site n'utilise pas de cookies de suivi ou de publicité. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être utilisés. Vous pouvez configurer votre navigateur pour refuser les cookies.</p>
+        </details>
+
+        <details>
+          <summary>Sécurité des données</summary>
+          <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte, destruction ou divulgation accidentelle.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container foot">
+      <div>
+        <p>&copy; 2025 Meubles & Co — Tous droits réservés</p>
+        <nav aria-label="Liens légaux" class="legal-links">
+          <a href="#mentions-legales">Mentions légales</a>
+          <span aria-hidden="true">•</span>
+          <a href="#politique-confidentialite">Politique de confidentialité</a>
+        </nav>
+      </div>
+      <p><a href="#presentation" aria-label="Retour en haut de la page">
+        <span aria-hidden="true">&uarr;</span> Haut de page
+      </a></p>
+    </div>
+  </footer>
+</body>
+</html>
