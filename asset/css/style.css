@@ -30,7 +30,6 @@
       text-decoration: none;
     }
 
-    /* Soulignement au focus et hover pour meilleure visibilité */
     a:hover,
     a:focus {
       text-decoration: underline;
@@ -55,7 +54,6 @@
       --shadow: 0 10px 30px rgba(0, 0, 0, .08);
     }
 
-    /* ===== Accessibilité ===== */
     .skip-link {
       position: absolute;
       left: -9999px;
@@ -78,14 +76,12 @@
       z-index: 1000;
     }
 
-    /* Indication visuelle claire du focus */
     :focus-visible {
       outline: 3px solid var(--ring);
       outline-offset: 3px;
       border-radius: 4px;
     }
 
-    /* Classe pour masquer visuellement mais garder pour lecteurs d'écran */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -98,14 +94,12 @@
       border-width: 0;
     }
 
-    /* ===== Layout ===== */
     .container {
       max-width: var(--container);
       margin-inline: auto;
       padding: 0 1rem;
     }
 
-    /* ===== Header ===== */
     header {
       position: sticky;
       top: 0;
@@ -128,7 +122,6 @@
       font-size: 1.1rem;
     }
 
-    /* ===== Menu burger ===== */
     .menu-toggle {
       display: flex;
       flex-direction: column;
@@ -177,7 +170,6 @@
       right: 0;
     }
 
-    /* Animation burger */
     #menu-checkbox:checked ~ .menu-toggle span:nth-child(1) {
       transform: rotate(45deg) translate(7px, 7px);
     }
@@ -217,14 +209,12 @@
       text-decoration: none;
     }
 
-    /* Indication de la page actuelle */
     nav a[aria-current="page"] {
       background: var(--brand);
       color: #fff;
       font-weight: 700;
     }
 
-    /* ===== Hero ===== */
     .hero {
       background: linear-gradient(135deg, var(--paper), #fff);
       border-bottom: 1px solid #eee;
@@ -290,7 +280,6 @@
       font-size: 1.05rem;
     }
 
-    /* ===== Boutique ===== */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -345,7 +334,6 @@
       font-weight: 600;
     }
 
-    /* ===== À propos ===== */
     .about {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -374,7 +362,6 @@
       margin-bottom: .5rem;
     }
 
-    /* ===== Contact ===== */
     form {
       display: grid;
       gap: 1rem;
@@ -412,7 +399,6 @@
       outline-offset: 2px;
     }
 
-    /* Indication des champs requis */
     input:required,
     textarea:required {
       border-left: 4px solid var(--accent);
@@ -439,7 +425,6 @@
       transform: scale(0.98);
     }
 
-    /* ===== FAQ ===== */
     details {
       border: 2px solid #e5e7eb;
       border-radius: 12px;
@@ -503,7 +488,6 @@
       color: var(--brand);
     }
 
-    /* ===== Footer ===== */
     footer {
       border-top: 1px solid #e5e7eb;
       background: var(--paper);
@@ -556,7 +540,6 @@
       text-decoration: none;
     }
 
-    /* ===== Responsive ===== */
     @media (max-width: 768px) {
       .hero-inner {
         grid-template-columns: 1fr;
@@ -571,7 +554,6 @@
       }
     }
 
-    /* ===== Préférences utilisateur ===== */
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -586,8 +568,7 @@
       }
     }
 
-    /* Mode contraste élevé */
-    @media (prefers-contrast: high) {
+    @media (prefers-contrast:no-preference) {
       :root {
         --muted: #1a1a1a;
       }
@@ -597,4 +578,4 @@
       details {
         border-width: 3px;
       }
-    } 
+    }

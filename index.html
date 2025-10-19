@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Meubles & Co — Mobilier durable et écoresponsable</title>
   <meta name="description" content="Vendeur de meubles durables. Présentation, boutique, à propos, contact, FAQ.">
-  <link rel="stylesheet" href="asset/css/style.css">
+  <link rel="styelsheet" href="asset/css/style.css">
 </head>
 
 <body>
   <a class="skip-link" href="#contenu">Aller directement au contenu principal</a>
 
-  <header role="banner">
+  <header>
     <div class="container bar">
       <a href="#presentation" class="brand">Meubles & Co</a>
 
@@ -25,7 +25,7 @@
       </label>
 
       <nav id="navigation-principale" aria-label="Navigation principale">
-        <ul role="list">
+        <ul>
           <li><a href="#presentation">Présentation</a></li>
           <li><a href="#boutique">Boutique</a></li>
           <li><a href="#a-propos">À propos</a></li>
@@ -38,11 +38,11 @@
     </div>
   </header>
 
-  <main id="contenu" role="main">
+  <main id="contenu">
     <section id="presentation" class="hero" aria-labelledby="titre-hero">
       <div class="container hero-inner">
         <div>
-          <p><span class="tag" role="text">Nouveautés</span></p>
+          <p><span class="tag">Nouveautés</span></p>
           <h1 id="titre-hero">Mobilier durable pour intérieurs exigeants</h1>
           <p class="lead">Bois certifié, finitions non toxiques, conception pensée pour durer. Notre
             ligne allie fonctionnalité, esthétique et impact environnemental réduit.</p>
@@ -60,48 +60,48 @@
         <h2 id="titre-boutique">Boutique</h2>
         <p class="lead">Sélection essentielle de notre collection. Prix indicatifs.</p>
 
-        <div class="cards" role="list">
-          <article class="card" role="listitem">
+        <div class="cards">
+          <article class="card">
             <figure>
               <img src="asset/img/chene.jpeg" alt="Buffet en chêne massif de couleur naturelle avec portes et tiroirs" loading="lazy" width="800" height="600">
             </figure>
             <div class="body">
               <h3>Buffet Chêne Luma </h3>
               <p>Rangements généreux. Finition huilée.</p>
-              <p class="price" aria-label="Prix">999 €</p>
+              <p class="price">999 €</p>
             </div>
           </article>
 
-          <article class="card" role="listitem">
+          <article class="card">
             <figure>
               <img src="asset/img/table.jpeg" alt="Table extensible en bois clair de style scandinave avec pieds fuselés" loading="lazy" width="800" height="600">
             </figure>
             <div class="body">
               <h3>Table Extensible Arko</h3>
               <p>De 160 à 240 centimètres. Mécanisme discret.</p>
-              <p class="price" aria-label="Prix">1 290 €</p>
+              <p class="price">1 290 €</p>
             </div>
           </article>
 
-          <article class="card" role="listitem">
+          <article class="card">
             <figure>
               <img src="asset/img/canape.jpeg" alt="Canapé trois places en tissu beige avec coussins d'assise confortables" loading="lazy" width="800" height="600">
             </figure>
             <div class="body">
               <h3>Canapé Rhea 3 places</h3>
               <p>Déhoussable. Tissu recyclé.</p>
-              <p class="price" aria-label="Prix">1 150 €</p>
+              <p class="price">1 150 €</p>
             </div>
           </article>
 
-          <article class="card" role="listitem">
+          <article class="card">
             <figure>
               <img src="asset/img/chaise.jpeg" alt="Chaise en bois de noyer avec assise rembourrée en tissu gris" loading="lazy" width="800" height="600">
             </figure>
             <div class="body">
               <h3>Chaise Noyer Vida</h3>
               <p>Assise en tissu. Structure en noyer.</p>
-              <p class="price" aria-label="Prix">189 €</p>
+              <p class="price">189 €</p>
             </div>
           </article>
         </div>
@@ -133,15 +133,15 @@
         <h2 id="titre-contact">Contact</h2>
         <form method="post" action="/contact" aria-label="Formulaire de contact">
           <div>
-            <label for="nom">Nom <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <label for="nom">Nom <abbr title="obligatoire">*</abbr></label>
             <input id="nom" name="nom" type="text" required aria-required="true" autocomplete="name">
           </div>
           <div>
-            <label for="email">Adresse électronique <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <label for="email">Adresse électronique <abbr title="obligatoire">*</abbr></label>
             <input id="email" name="email" type="email" required aria-required="true" autocomplete="email">
           </div>
           <div>
-            <label for="message">Message <abbr title="obligatoire" aria-label="champ obligatoire">*</abbr></label>
+            <label for="message">Message <abbr title="obligatoire">*</abbr></label>
             <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
           </div>
           <button type="submit">Envoyer le message</button>
@@ -257,7 +257,7 @@
     </section>
   </main>
 
-  <footer role="contentinfo">
+  <footer>
     <div class="container foot">
       <div>
         <p>&copy; 2025 Meubles & Co — Tous droits réservés</p>
