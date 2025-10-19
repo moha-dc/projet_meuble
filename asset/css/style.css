@@ -568,7 +568,7 @@
       }
     }
 
-    @media (prefers-contrast:no-preference) {
+    @media (prefers-contrast:) {
       :root {
         --muted: #1a1a1a;
       }
